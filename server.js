@@ -14,10 +14,15 @@ var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
 
-var configDB = require('./config/database.js');
+//var configDB = require('./config/database.js');
 
 // configuration ===============================================================
-mongoose.connect(configDB.url); // connect to our database
+//mongoose.connect(configDB.url); // connect to our database
+
+var mongoClient = require("mongodb").MongoClient;
+mongoClient.connect("mongodb://cloudprogdb:yEKxfJtoH7aQks8vpiaAypcqd5dXTU3k5ajFtdzonRiTmTidE4c7xbTmfjDmK45ut8B1N2UBADtSWf0o6kDVqA%3D%3D@cloudprogdb.documents.azure.com:10255/?ssl=true", function (err, client) {
+  client.close();
+});
 
 require('./config/passport')(passport); // pass passport for configuration
 
